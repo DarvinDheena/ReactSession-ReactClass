@@ -1,6 +1,6 @@
-const Hello = ()=>{
+const Hello = (props)=>{
   return (
-    <div>Hello World!</div>
+    <div>Hello {props.name},i am {props.age}</div>
   )
 }
 
@@ -14,8 +14,8 @@ const App = ()=>{
   return(
     <div><p>Hello World!, now time is { time.toString() } </p>
     <p>{ c }</p>
-    <Hello />
-    <Hello />
+    <Hello name='darvin' age='25' />
+    <Hello name ='balan' age ='50'/>
     </div>
    
   )
