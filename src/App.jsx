@@ -1,3 +1,5 @@
+import './App.css';
+
 const Hello = (props)=>{
   return (
     <div>Hello {props.name},i am {props.age}</div>
@@ -15,7 +17,8 @@ const App = ()=>{
   //   background: 'red',
   // }
   return(
-    <div><p style={ { color :"white", background :"blue"} }>Hello World!, now time is { time.toString() } </p>
+    // <div><p style={ { color :"white", background :"blue"} }>Hello World!, now time is { time.toString() } </p>
+    <div><p>Hello World!, now time is { time.toString() } </p>
     <p>{ c }</p>
     <Hello name='darvin' age='25' />
     <Hello name ='balan' age ='50'/>
