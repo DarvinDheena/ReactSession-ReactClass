@@ -10,9 +10,12 @@ const App = ()=>{
   let a=10;
   let b = 20;
   let c = a+b ;
-
+  // let appStyle = {
+  //   color : 'white',
+  //   background: 'red',
+  // }
   return(
-    <div><p>Hello World!, now time is { time.toString() } </p>
+    <div><p style={ { color :"white", background :"blue"} }>Hello World!, now time is { time.toString() } </p>
     <p>{ c }</p>
     <Hello name='darvin' age='25' />
     <Hello name ='balan' age ='50'/>
