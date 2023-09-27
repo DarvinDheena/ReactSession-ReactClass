@@ -1,3 +1,9 @@
+const Hello = ()=>{
+  return (
+    <div>Hello World!</div>
+  )
+}
+
 const App = ()=>{
   let time = new Date();
 
@@ -8,6 +14,8 @@ const App = ()=>{
   return(
     <div><p>Hello World!, now time is { time.toString() } </p>
     <p>{ c }</p>
+    <Hello />
+    <Hello />
     </div>
    
   )
