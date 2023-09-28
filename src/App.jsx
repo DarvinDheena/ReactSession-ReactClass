@@ -1,14 +1,19 @@
 import React from 'react'
 
-function App( props ) {
+function Note (props){
   console.log(props)
-  const { notes } = props
+  return(
+    <option >{props.note.content}</option>
+  )
+}
+
+function App( props ) {  const { notes } = props
   return (
     <div>
       <select>
         {
-       notes.map ((myone,index) => {
-        return <option key={ index }>{ myone.content}</option> 
+       notes.map ((note) => {
+        return <Note note = {note} key={note.id} />
        })
       }
       </select>
