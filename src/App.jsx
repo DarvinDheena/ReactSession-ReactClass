@@ -13,7 +13,14 @@ function Note (props){
   
 }
 
-function App( props ) {  const { notes } = props
+function App( props ) {  
+  const { notes } = props ;
+  function addNote(event){
+    event.preventDefault();
+    console.log('button Clicked')
+    // console.log(event.target.elements.note.value);
+  }
+
   return (
     <div>
       <select>
@@ -23,6 +30,11 @@ function App( props ) {  const { notes } = props
        })
       }
       </select>
+      <form>
+        <input name='note' />
+        <button onClick={addNote}>Get Details</button>
+      </form>
+      
     </div>
     
   )
