@@ -5,14 +5,13 @@ function App( props ) {
   const { notes } = props
   return (
     <div>
-      <p> {notes[0].content }</p>
-      <ul>
+      <select>
         {
-       notes.map ((note) => {
-        return <li key={note.id}>{ note.content}</li>
+       notes.map ((myone,index) => {
+        return <option key={ index }>{ myone.content}</option> 
        })
       }
-      </ul>
+      </select>
     </div>
     
   )
