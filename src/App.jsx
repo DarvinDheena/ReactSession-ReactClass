@@ -1,11 +1,6 @@
 import React from 'react'
+import Note from "./Note.jsx"
 
-function Note (props){
-  console.log(props)
-  return(
-    <option >{props.note.content}</option>
-  )
-}
 
 function App( props ) {  const { notes } = props
   return (
