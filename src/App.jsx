@@ -1,6 +1,17 @@
 import React from 'react'
-import Note from "./Note.jsx"
 
+function Note (props){
+  console.log(props)
+  if (props.note.important){
+    return(
+      <option >{props.note.content} STAR</option>
+    )
+  }
+  return(
+    <option >{props.note.content}</option>
+  )
+  
+}
 
 function App( props ) {  const { notes } = props
   return (
