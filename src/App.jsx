@@ -1,21 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-function App() {
+function GrandChild({name}){
+    console.log('grandchild called');
+    return(
+        <div>
+            <p>this.{ name }</p>
+        </div>
+    )
+}
 
-    const [state,setState] = useState(0);
-    useEffect(()=>{
-        document.title = `count : ${state}`
-    },[state])
-
-    function Increment(){
-        setState(state+1);
+function Child ({name}){
+    return(
+        <div>
+            <p>this {name} </p>
+            <GrandChild name = {name}/>
+        </div>
         
-    }
-
+    )
+}
+function App() {
   return (
     <div>
-        <p>count :{state} </p>
-        <button onClick={ Increment }>Increment</button>
+        <p>Hello Darvin</p>
+        <Child name='sathish'/>
     </div>
   )
 }
