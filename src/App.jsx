@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function App(props) {
-    console.log(props);
-    let { counter } = props
+function App() {
+    let  [counter , setCounter] = useState(0);
+    setTimeout(
+        ()=>{setCounter(counter+1)},
+        1000
+    )
     return (
     <div>
         <p>{counter }</p>
