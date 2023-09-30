@@ -28,7 +28,13 @@ export default class extends Component {
             bad:this.state.bad + 1,
         })
     }
-
+    handleReset = ()=>{
+        this.setState ({
+            good : 0 ,
+            neutral:0,
+            bad:0,
+        })
+    }
   render() {
     return (
       <div>
@@ -41,6 +47,8 @@ export default class extends Component {
         <p>good : { this.state.good }</p>
         <p>neutral : { this.state.neutral}</p>
         <p>bad : { this.state.bad}</p>
+
+        <button onClick={this.handleReset}>reset</button>
       </div>
     )
   }
