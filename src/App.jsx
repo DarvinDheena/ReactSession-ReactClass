@@ -9,12 +9,17 @@ function App() {
     const handleZeroClick = ()=>{
         setCounter(0);
     }
+    const handleMinusClick = ()=>{
+        if (counter > 0){
+            setCounter(counter -1);
+        }
+    }
   return (
     <div>
         <div>{ counter }</div>
         <button onClick={ handlePlusClick }> Increment </button>
         <button onClick={ handleZeroClick }> Zero </button>
-
+        <button onClick={ handleMinusClick }> Increment </button>
     </div>
   )
 }
