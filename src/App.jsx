@@ -1,29 +1,21 @@
 import React, { useEffect, useState } from 'react'
 
 function App() {
-   
-    let [data , setData] = useState(null);
+
+    const [state,setState] = useState(0);
     useEffect(()=>{
-      fetch(`https://jsonplaceholder.typicode.com/posts`)
-      .then(response => response.json())
-      .then(result => setData(result))
-    },[])
-    console.log(data);
+        document.title = `count : ${state}`
+    },[state])
+
+    function Increment(){
+        setState(state+1);
+        
+    }
+
   return (
     <div>
-        <h1>API Data</h1>
-        {
-            data ? (
-                <ul>
-                    {
-                        data.map(item => {
-                            return <li key={item.id}> { item.title } </li>
-                        })
-                    }
-                </ul>
-            ) : 
-            <p>loading Data..</p>
-        }
+        <p>count :{state} </p>
+        <button onClick={ Increment }>Increment</button>
     </div>
   )
 }
