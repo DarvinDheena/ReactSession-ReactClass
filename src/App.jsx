@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 
 function App() {
-    let  [counter , setCounter] = useState(0);
-    setTimeout(
-        ()=>{setCounter(counter+1)},
-        1000
-    )
-    return (
+    const [ counter , setCounter] = useState(0);
+
+    const handleClick = ()=>{
+        setCounter(counter + 1);
+    }
+  return (
     <div>
-        <p>{counter }</p>
+        <div>{ counter }</div>
+        <button onClick={ handleClick }> Increment </button>
     </div>
   )
 }
