@@ -1,15 +1,18 @@
-import React from 'react'
-let Hello = ({name})=>{
-    return (
-        <p>HEllo Sathis{ name }</p>
-    )
-}
-function App() {
-  return (
-    <div>
-        <Hello name ="sathis"/>
-    </div>
-  )
+import React, { Component } from 'react'
+ 
+class Hello extends Component {
+    render(){
+
+    }
 }
 
-export default App
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        <p>Hello Guest</p>
+        <Hello />
+      </div>
+    )
+  }
+}
