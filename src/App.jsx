@@ -8,6 +8,12 @@ function Display(props){
     )
 }
 
+function Button({text,handleClick}){
+    return(
+        <button onClick={ handleClick }> {text} </button>
+    )
+}
+
 function App() {
     const [ counter , setCounter] = useState(0);
 
@@ -25,9 +31,11 @@ function App() {
   return (
     <div>
         <Display counter={counter}/>
-        <button onClick={ handlePlusClick }> Increment </button>
-        <button onClick={ handleZeroClick }> Zero </button>
-        <button onClick={ handleMinusClick }> Decrement </button>
+        <Button text='plus' handleClick={ handlePlusClick } />
+        <Button text='minus' handleClick={ handleMinusClick } />
+        <Button text='zero' handleClick={ handleZeroClick } />
+
+
     </div>
   )
 }
