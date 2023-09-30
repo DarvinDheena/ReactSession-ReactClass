@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
-
-export default class App extends Component {
-  render() {
+import React from 'react'
+let Hello = ({name})=>{
     return (
-      <div>App
-        <p>Hello World</p>
-      </div>
+        <p>HEllo Sathis{ name }</p>
     )
-  }  
 }
+function App() {
+  return (
+    <div>
+        <Hello name ="sathis"/>
+    </div>
+  )
+}
+
+export default App
