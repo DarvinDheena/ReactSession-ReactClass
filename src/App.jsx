@@ -1,25 +1,26 @@
 import React, { Component } from 'react'
- 
-class Hello extends Component {
-    render(){
-        const { name } = this.props
-        const { age } = this.props
-        console.log(this.props)
 
-        return(
-            <p>Hello { name },i am { age}</p>
-        )
-        
+export default class extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            count : 0,
+        }
     }
-}
 
-export default class App extends Component {
+    increment = ()=>{
+        this.setState({
+            count : this.state.count + 1 ,
+        })
+    }
+
   render() {
     return (
       <div>
-        <p>Hello Guest</p>
-        <Hello name='darvin' age='25'/>
+        <p>Count : { this.state.count }</p>
+        <button onClick={ this.increment}>Increment</button>
       </div>
     )
   }
 }
+
