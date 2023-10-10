@@ -1,28 +1,25 @@
-import React, { useState } from 'react'
-
-function Change ({nameChange}){
-    const name = "darvin"
-    return (
-        <div>
-            <p></p>
-            <button onClick={()=>nameChange(name)}>ChangeName</button>
-        </div>
-    )
-}
-
+import React from 'react'
+import Home from './Components/Home'
+import Note from './Components/Note'
+import User from './Components/User'
+import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 function App() {
-    const [state , setState] = useState('');
-
-    function nameChange (value){
-        setState(value);
-    }
-
-
+  const padding = {
+    padding : 5 ,
+  }
   return (
-    <div>
-        <p>nameChange:{ state}</p>
-        <Change nameChange = { nameChange}/>
-    </div>
+       <Router>
+        <div>
+          <Link to='/' style={padding}>Home</Link>
+          <Link to='/notes' style={padding}> Note</Link>
+          <Link to='/users' style={padding}>User</Link>
+        </div>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/notes' element={<Note />} />
+          <Route path='/users' element={<User />} />
+        </Routes>
+       </Router>
   )
 }
 
