@@ -3,7 +3,9 @@ import Home from './Components/Home'
 import Note from './Components/Note'
 import User from './Components/User'
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-function App() {
+import Notes from './Components/Notes'
+
+function App({ notes }) {
   const padding = {
     padding : 5 ,
   }
@@ -16,8 +18,9 @@ function App() {
         </div>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/notes' element={<Note />} />
+          <Route path='/notes' element={<Note notes={ notes }/>} />
           <Route path='/users' element={<User />} />
+          <Route  path ='/note/:id' element={ <Notes notes={ notes }/>} />
         </Routes>
        </Router>
   )
