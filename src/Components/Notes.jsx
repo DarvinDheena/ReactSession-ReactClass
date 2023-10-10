@@ -7,7 +7,6 @@ function Notes({ notes }) {
     console.log(id);
 
     let note = notes.find(note=> note.id === Number (id) );
-
   return (
     <div>
         <h1>{ note.content}</h1>

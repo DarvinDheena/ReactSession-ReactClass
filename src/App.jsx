@@ -11,6 +11,7 @@ function App({ notes }) {
   }
   return (
        <Router>
+        <h1>Use Params</h1>
         <div>
           <Link to='/' style={padding}>Home</Link>
           <Link to='/notes' style={padding}> Note</Link>
