@@ -1,9 +1,9 @@
 import React from 'react'
 
-function GrandChildComponent({ message }) {
+function GrandChildComponent() {
   return (
     <div>
-        <p>message from grand child component : { message }</p>
+        <p>message from grand child component : </p>
     </div>
   )
 }
