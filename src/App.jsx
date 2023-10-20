@@ -1,19 +1,19 @@
-import React from 'react'
-import { useRef } from 'react'
+import React, { useReducer, useState } from 'react'
+import { initialState, reducer } from './Components/countReducer'
 
 function App() {
 
-  const inputRef = useRef(null);
-  const handleBtnClick = ()=>{
-    inputRef.current.focus();
-  }
+  const [ state,dispatch] = useReducer(reducer,initialState);
+
   return (
     <div>
-      <input 
-        type='text'
-        ref={inputRef}
-      />
-      <button onClick={handleBtnClick}>Focus Input</button>
+      <p>Count : { state.count }</p>
+      {/* <button onClick={ ()=> setCount(count + 1)}>Increase</button>
+      <button onClick={ ()=> setCount(count - 1)}>Decrease</button>
+      <button onClick={ ()=> setCount(0)}>Reset</button> */}
+      <button onClick={()=>dispatch ({ type : 'increment'} ) }>increment</button>
+      <button  onClick={ ()=> dispatch ( {type:'decrement'})}>decrement</button>
+      <button onClick={ ()=>dispatch ( { type: 'reset'})}>reset</button>
 
     </div>
   )
