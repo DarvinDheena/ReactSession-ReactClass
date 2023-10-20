@@ -1,20 +1,22 @@
-import React, { useReducer, useState } from 'react'
-import { initialState, reducer } from './Components/countReducer'
+import React, { useReducer } from 'react'
+
+const initialState = {
+  isActive : false,
+}
+
+function reducer(state,action){
+  switch(action.type){
+    case 'toggle':return { isActive: !state.isActive }
+  }
+}
 
 function App() {
-
-  const [ state,dispatch] = useReducer(reducer,initialState);
-
+  const [state , dispatch] = useReducer( reducer,initialState);
   return (
     <div>
-      <p>Count : { state.count }</p>
-      {/* <button onClick={ ()=> setCount(count + 1)}>Increase</button>
-      <button onClick={ ()=> setCount(count - 1)}>Decrease</button>
-      <button onClick={ ()=> setCount(0)}>Reset</button> */}
-      <button onClick={()=>dispatch ({ type : 'increment'} ) }>increment</button>
-      <button  onClick={ ()=> dispatch ( {type:'decrement'})}>decrement</button>
-      <button onClick={ ()=>dispatch ( { type: 'reset'})}>reset</button>
-
+      <h1>toggle Button</h1>
+      <p>Activate profile : { state.isActive ? 'yes' : ' no'  }</p>
+      <button onClick={ ()=> dispatch({type:'toggle'})}>toggle profile</button>
     </div>
   )
 }
