@@ -1,26 +1,73 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useState } from 'react'
 
-const initialState = {
-  isActive : false,
-}
+function App(props) {
 
-function reducer(state,action){
-  switch(action.type){
-    case 'toggle':return { isActive: !state.isActive }
-    case 'toactive' : return { isActive : true }
-    case 'toinactive' : return { isActive : false }
+  const padding ={
+    padding :  10 , 
   }
-}
 
-function App() {
-  const [state , dispatch] = useReducer( reducer,initialState);
+  const [ notes,setNotes] = useState( props.notes);
+  const [ showStatus, setShowStatus] = useState('all')
+  
+  const handleStatusChange = (event)=>{
+    setShowStatus(event.target.value)
+  }
+
+  const filterdNotes = (notes,showStatus)=>{
+    switch (showStatus){
+      case  'all' : return notes 
+      case 'imp' : return notes.filter(note => note.important=== true)
+      case 'non-imp' : return notes.filter(note=>note.important === false)
+     }
+  }
+
+  const notesFiltered = filterdNotes(notes,showStatus);
+  console.log(notesFiltered);
   return (
     <div>
-      <h1>toggle Button</h1>
-      <p>Activate profile : { state.isActive ? 'yes' : ' no'  }</p>
-      <button onClick={ ()=> dispatch({type:'toggle'})}>toggle profile</button>
-      <button onClick={()=>dispatch({type : 'toactive'})}>toactive</button>
-      <button onClick={()=>dispatch({type : 'toinactive'})}>toinactive</button>
+      <h1>Notes</h1>
+      <label style={ padding }>
+        <input 
+          type='radio' 
+          name='filter' 
+          onChange={ handleStatusChange}
+          value= 'all'
+          checked={showStatus==='all'}
+        /> 
+      Show All
+      </label >
+      <label style={ padding }>
+        <input 
+          type='radio' 
+          name='filter'
+          onChange={ handleStatusChange}
+          value='imp'
+          checked= { showStatus === 'imp'}
+        /> 
+      Important
+      </label>
+      <label style={ padding }>
+        <input 
+          type='radio' 
+          name='filter'
+          onChange={ handleStatusChange}
+          value = 'non-imp'
+          checked= { showStatus === 'non-imp'}
+        /> All
+      Non-important
+      </label>
+      
+
+
+      <ul>
+        {
+          notesFiltered.map(note=>
+          <li key={ note.id }>
+            { note.content }
+            {/* { note.important ? 'yes':'no'} */}
+          </li>)
+        }
+      </ul>
     </div>
   )
 }
