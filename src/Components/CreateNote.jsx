@@ -1,6 +1,7 @@
 import React from 'react'
 
-function CreateNote() {
+function CreateNote({newNoteContent,newNoteImportant,newNoteContentRef,setNewNoteContent,setNewNoteImportant,addNote}) {
+  
   return (
     <div>
         <h2>Add a New Note</h2>

@@ -14,33 +14,25 @@ function App() {
   // states for adding new note form
   const [newNoteContent, setNewNoteContent] = useState('');
   const [newNoteImportant, setNewNoteImportant] = useState('');
-
+ 
 
   const newNoteContentRef = useRef(null);
   const fetchNotes = async ()=>{
     try {
       const response = await axios.get('http://localhost:3000/notes')
       setNotes(response.data)
-    }catch(error){
-      console.log(error);
     }
-   
+    catch(error){
+      console.log(error);
+    } 
   }
-  
-
-  useEffect(()=>{
-   fetchNotes();
-  },[]);
-
   const addNote = (event) => {
     event.preventDefault();
-
     // create a new note object
     let noteObject = {
       content: newNoteContent,
       important: newNoteImportant === 'true',
     }
-
     axios .post('http://localhost:3000/notes',noteObject)
           .then(response =>{
               console.log('new note added')
@@ -52,15 +44,18 @@ function App() {
     newNoteContentRef.current.focus();
     fetchNotes();
   }
+  
+  useEffect(()=>{
+   fetchNotes();
+  },[]);
 
   const handleStatusChange = (event) => {
     // console.log(event.target.value);
     setShowStatus(event.target.value);
   }
 
- 
   const padding = {
-    padding : 10 ,
+    paddingRight : 10 ,
   }
   return (
     <Router>
@@ -72,7 +67,7 @@ function App() {
       <Routes>
          <Route path='/' element={<Dashboard />} />
          <Route path='/readnote' element={ <Notes showStatus={ showStatus } handleStatusChange={ handleStatusChange } notes={ notes }/>} />
-         <Route path='/createnote' element={<CreateNote />} />
+         <Route path='/createnote' element={<CreateNote newNoteContent={ newNoteContent } newNoteImportant={ newNoteImportant } newNoteContentRef={ newNoteContentRef } setNewNoteContent={ setNewNoteContent } setNewNoteImportant={ setNewNoteImportant } addNote={ addNote } />} />
       </Routes>  
     </Router>
   )
