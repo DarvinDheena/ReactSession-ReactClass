@@ -1,73 +1,135 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
 
 function App(props) {
 
-  const padding ={
-    padding :  10 , 
+  // define states
+  const [notes, setNotes] = useState(props.notes);
+  const [showStatus, setShowStatus] = useState('all');
+
+  // states for adding new note form
+  const [newNoteContent, setNewNoteContent] = useState('');
+  const [newNoteImportant, setNewNoteImportant] = useState('');
+
+
+  const newNoteContentRef = useRef(null);
+
+  useEffect(() => {
+    newNoteContentRef.current.focus();
+  }, []);
+
+  const addNote = (event) => {
+    event.preventDefault();
+
+    // create a new note object
+    let noteObject = {
+      id: notes.length + 1,
+      content: newNoteContent,
+      important: newNoteImportant === 'true',
+    }
+
+    setNotes(notes.concat(noteObject));
+
+    // clear the inputs
+    setNewNoteContent('');
+    setNewNoteImportant('');
+
+    newNoteContentRef.current.focus();
   }
 
-  const [ notes,setNotes] = useState( props.notes);
-  const [ showStatus, setShowStatus] = useState('all')
-  
-  const handleStatusChange = (event)=>{
-    setShowStatus(event.target.value)
+  const handleStatusChange = (event) => {
+    // console.log(event.target.value);
+    setShowStatus(event.target.value);
   }
 
-  const filterdNotes = (notes,showStatus)=>{
-    switch (showStatus){
-      case  'all' : return notes 
-      case 'imp' : return notes.filter(note => note.important=== true)
-      case 'non-imp' : return notes.filter(note=>note.important === false)
-     }
+  let filterNotes = (notes, showStatus) => {
+    switch (showStatus) {
+      case 'all':
+        return notes;
+      case 'imp':
+        return notes.filter(note => note.important === true);
+      case 'nonimp':
+        return notes.filter(note => note.important === false);
+    }
   }
 
-  const notesFiltered = filterdNotes(notes,showStatus);
-  console.log(notesFiltered);
+  const notesFiltered = filterNotes(notes, showStatus);
+
   return (
     <div>
       <h1>Notes</h1>
-      <label style={ padding }>
-        <input 
-          type='radio' 
-          name='filter' 
-          onChange={ handleStatusChange}
-          value= 'all'
-          checked={showStatus==='all'}
-        /> 
-      Show All
-      </label >
-      <label style={ padding }>
-        <input 
-          type='radio' 
-          name='filter'
-          onChange={ handleStatusChange}
-          value='imp'
-          checked= { showStatus === 'imp'}
-        /> 
-      Important
-      </label>
-      <label style={ padding }>
-        <input 
-          type='radio' 
-          name='filter'
-          onChange={ handleStatusChange}
-          value = 'non-imp'
-          checked= { showStatus === 'non-imp'}
-        /> All
-      Non-important
-      </label>
-      
 
+      <label>
+        <input 
+          type='radio'
+          name='filter'
+          onChange={handleStatusChange}
+          value='all'
+          checked={showStatus === 'all'}
+        />
+        All Notes
+      </label>
+
+      <label>
+        <input 
+          type='radio'
+          name='filter'
+          onChange={handleStatusChange}
+          value='imp'
+
+        />
+        Important Notes
+      </label>
+
+      <label>
+        <input 
+          type='radio'
+          name='filter'
+          onChange={handleStatusChange}
+          value='nonimp'
+
+        />
+        Non-Important Notes
+      </label>
 
       <ul>
         {
-          notesFiltered.map(note=>
-          <li key={ note.id }>
-            { note.content }
-            {/* { note.important ? 'yes':'no'} */}
-          </li>)
+          notesFiltered.map(note => 
+            <li key={note.id}>{ note.content }</li>
+          )
         }
       </ul>
+      <hr></hr>
+      <h2>Add a New Note</h2>
+      <form onSubmit={addNote}>
+        <label>
+          Content: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input 
+            onChange={(e) => setNewNoteContent(e.target.value)}
+            value={newNoteContent}
+            ref={newNoteContentRef}
+            required
+          />
+        </label>
+        <br /><br />
+        <label>
+          Is Important: &nbsp;&nbsp;  
+          <select
+            onChange={(e) => setNewNoteImportant(e.target.value)}
+            value={newNoteImportant}
+            required
+          >
+            <option disabled>--select--</option>
+            <option>true</option>
+            <option>false</option>
+          </select>
+        </label>
+
+        <br /><br />
+
+        <button type='submit'>Add New Note</button>
+
+      </form>
+
     </div>
   )
 }
