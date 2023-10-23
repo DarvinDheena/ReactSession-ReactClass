@@ -1,0 +1,49 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "content": "Conditional Rendering",
+      "important": true
+    },
+    {
+      "id": 2,
+      "content": "Props Drilling",
+      "important": true
+    },
+    {
+      "id": 3,
+      "content": "Lifting the state up",
+      "important": false
+    },
+    {
+      "id": 4,
+      "content": "Use State Hook",
+      "important": true
+    },
+    {
+      "id": 5,
+      "content": "Use Reducer Hook",
+      "important": false
+    },
+    {
+      "content": "crud with react",
+      "important": false,
+      "id": 6
+    },
+    {
+      "content": "working with axios",
+      "important": false,
+      "id": 7
+    },
+    {
+      "content": "check one",
+      "important": false,
+      "id": 8
+    },
+    {
+      "content": "check two",
+      "important": false,
+      "id": 9
+    }
+  ]
+}
